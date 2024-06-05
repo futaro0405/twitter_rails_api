@@ -34,5 +34,9 @@ module Myapp
                        routing_specs: false
       g.factory_bot false
     end
+
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ja
   end
 end
