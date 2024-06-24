@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :registerable,
          :recoverable,
          :rememberable,
-         :validatable
+         :validatable,
+         :confirmable
   include DeviseTokenAuth::Concerns::User
 end

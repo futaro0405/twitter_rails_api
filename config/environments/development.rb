@@ -37,6 +37,7 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_options = { from: Rails.application.credentials.mail[:address] }
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :letter_opener_web
@@ -44,8 +45,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
     port: 587,
-    user_name: ENV.fetch('EMAIL', nil),
-    password: ENV.fetch('APP_PASSWORD', nil),
+    user_name: Rails.application.credentials.mail[:address],
+    password: Rails.application.credentials.mail[:password],
     authentication: :login
   }
   # Print deprecation notices to the Rails logger.
