@@ -8,11 +8,12 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    if Rails.env.development?
-      origins '*'
-    else
-      origins "example.com"
-    end
+    origins '*'
+    # if Rails.env.development?
+    #   origins '*'
+    # else
+    #   origins "example.com"
+    # end
 
     resource '*',
       headers: :any,
