@@ -28,8 +28,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_26_062320) do
     t.string "unconfirmed_email"
     t.string "name"
     t.string "nickname"
-    t.string "image"
     t.string "email"
+    t.string "phone"
+    t.string "introduction"
+    t.string "place"
+    t.string "website"
+    t.date "birthdate"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

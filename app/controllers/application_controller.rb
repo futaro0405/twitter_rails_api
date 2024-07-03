@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-  before_action :authenticate_api_v1_user!, unless: :devise_controller?
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
   include DeviseTokenAuth::Concerns::SetUserByToken
 
-  private
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[email password password_confirmation])
+  before_action do
+    I18n.locale = :ja
   end
 end
