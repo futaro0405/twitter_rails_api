@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise :database_authenticatable,
-        #  :lockable,
+         #  :lockable,
          :timeoutable,
-        #  :trackable,
-        #  :omniauthable,
+         #  :trackable,
+         #  :omniauthable,
          :confirmable,
          :registerable,
          :recoverable,
