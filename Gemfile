@@ -50,10 +50,10 @@ group :development, :test do
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem 'letter_opener_web', '~> 2.0'
 end
