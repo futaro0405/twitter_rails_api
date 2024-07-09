@@ -1,15 +1,26 @@
 FROM ruby:3.2.1
-RUN apt-get update -qq && apt-get install -y \
-    build-essential \
-    libpq-dev
+RUN apt-get update -qq && \
+    apt-get install -y build-essential \
+    libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV APP_PATH /myapp
+RUN mkdir /myapp
+WORKDIR /myapp
 
-RUN mkdir $APP_PATH
-WORKDIR $APP_PATH
+ADD Gemfile /myapp/Gemfile
+ADD Gemfile.lock /myapp/Gemfile.lock
 
-ADD Gemfile $APP_PATH/Gemfile
-ADD Gemfile.lock $APP_PATH/Gemfile.lock
-RUN bundle install
+ENV BUNDLER_VERSION 2.5.5
+RUN gem update --system \
+    && gem install bundler -v $BUNDLER_VERSION \
+    && bundle install -j 4
 
-ADD . $APP_PATH
+ADD . /myapp
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
