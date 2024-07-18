@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
       get 'users/:name', to: 'users#index'
       resources :tweets, only: [:index, :create, :destroy]
+      resources :images, only: [:create]
     end
   end
 
